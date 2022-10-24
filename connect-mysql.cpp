@@ -1,19 +1,21 @@
 #include <vector>
 #include <mysql.h>
 #include "./connect-mysql.hpp"
+#include "./config-db.hpp"
 
 class HandleConnectMysql
 {
 private:
     auto handleCredentials()
     {
+        auto db = new ConfigDb();
         auto c = std::make_shared<ConnectMysql>();
 
-        c->setHost("127.0.0.1")
-            ->setUsername("root")
-            ->setPassword("pass")
-            ->setDb("pessoa")
-            ->setPort(3306);
+        c->setHost(db->host.c_str())
+            ->setUsername(db->username.c_str())
+            ->setPassword(db->password.c_str())
+            ->setDb(db->db.c_str())
+            ->setPort(db->port);
 
         return c;
     }
@@ -30,7 +32,10 @@ public:
         return con;
     }
 
-    void insertQuery(const char *query) {
+    void insertQuery(std::string strQuery)
+    {
+        const char *query = strQuery.c_str();
+
         MYSQL *con = config();
 
         mysql_query(con, query);
@@ -38,8 +43,10 @@ public:
         mysql_close(con);
     }
 
-    auto findQuery(const char *query)
+    auto findQuery(std::string strQuery)
     {
+        const char *query = strQuery.c_str();
+
         MYSQL *con = config();
 
         mysql_query(con, query);

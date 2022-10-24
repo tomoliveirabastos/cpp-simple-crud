@@ -8,4 +8,5 @@ conaninfo.txt
 graph_info.json
 Makefile
 bin
+config-db.json
 .vscode

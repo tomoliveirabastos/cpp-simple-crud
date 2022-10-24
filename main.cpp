@@ -1,5 +1,5 @@
 #include "./connect-mysql.cpp"
-#include "./query-builder.hpp"
+#include "./query-builder.cpp"
 
 void getRows()
 {
@@ -15,7 +15,7 @@ void getRows()
 
     std::shared_ptr<HandleConnectMysql> connectMysql = std::make_shared<HandleConnectMysql>();
 
-    auto pessoas = connectMysql->findQuery(querySql.c_str());
+    auto pessoas = connectMysql->findQuery(querySql);
 
     for (auto pessoa : pessoas)
     {
@@ -40,13 +40,12 @@ void insertRow()
 
     std::cout << querySql << std::endl;
 
-    connectMysql->insertQuery(querySql.c_str());
+    connectMysql->insertQuery(querySql);
 }
 
 int main(int argc, char **argv)
 {
     insertRow();
     getRows();
-
     return 0;
 }
