@@ -44,7 +44,7 @@ void insertRow()
 }
 
 int main(int argc, char **argv)
-{
+{   
     insertRow();
     getRows();
     return 0;
