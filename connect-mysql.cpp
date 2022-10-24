@@ -11,11 +11,11 @@ private:
         auto db = new ConfigDb();
         auto c = std::make_shared<ConnectMysql>();
 
-        c->setHost(db->host.c_str())
-            ->setUsername(db->username.c_str())
-            ->setPassword(db->password.c_str())
-            ->setDb(db->db.c_str())
-            ->setPort(db->port);
+        c->setHost(db->host.c_str());
+        c->setUsername(db->username.c_str());
+        c->setPassword(db->password.c_str());
+        c->setDb(db->db.c_str());
+        c->setPort(db->port);
 
         return c;
     }

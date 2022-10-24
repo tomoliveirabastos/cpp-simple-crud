@@ -7,7 +7,7 @@ void getRows()
 
     builder->setParameter(":id1", "2");
 
-    builder->createQuery("select nome from pessoa where id = :id1");
+    builder->createQuery("select nome from pessoa where id > :id1");
 
     auto querySql = builder->getQuery();
 
